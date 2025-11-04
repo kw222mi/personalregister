@@ -17,7 +17,13 @@ namespace personalregister
         public Employee(string firstName, string lastName, decimal salary)
 
         {
-         
+
+            if (string.IsNullOrWhiteSpace(firstName))
+                throw new ArgumentNullException(nameof(firstName), "Förnamn får inte vara tomt.");
+            if (string.IsNullOrWhiteSpace(lastName))
+                throw new ArgumentNullException(nameof(lastName), "Efternamn får inte vara tomt.");
+            if (salary < 0)
+                throw new ArgumentOutOfRangeException(nameof(salary), "Lön kan inte vara negativ.");
 
             this.FirstName = firstName.Trim();
             this.LastName = lastName.Trim();
